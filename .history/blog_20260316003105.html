@@ -87,16 +87,9 @@
             overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .blog-post__full-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-
         .blog-post__full-content.open {
-            max-height: none; 
+            max-height: 3000px;
         }
-
         .blog-post__full-content p {
             margin-bottom: var(--vspace-1);
             font-size: var(--text-sm);
@@ -238,6 +231,8 @@
                         <p>As an African woman, mother, and scholar, newly finding my feet and voice in a new country and navigating uncertain times, I draw inspiration from my daughter.</p>
                         <p>Being her mother requires me to process and translate a world that I can barely wrap my head around lately, to her.</p>
                         <p>Sometimes, the best I have is: "I don't know, what do you think, my love?" or "Let me think about that and get back to you later." or "Let's figure it out together", and that's okay. At other times, this does not suffice, and I need to reflect on my perspective and provide a starting point , a lens to help her frame the world as she explores and forms her own point of view.</p>
+                        <p>And that's okay.</p>
+  
                     </div>
                     <button class="blog-post__expand-btn">
                         <i class="fas fa-chevron-down"></i>
@@ -310,7 +305,6 @@
             </div>
         </footer>
     </div>
-
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 </body>

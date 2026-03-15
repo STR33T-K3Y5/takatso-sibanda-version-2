@@ -92,11 +92,6 @@
             overflow: hidden;
             transition: max-height 0.5s ease;
         }
-
-        .blog-post__full-content.open {
-            max-height: none; 
-        }
-
         .blog-post__full-content p {
             margin-bottom: var(--vspace-1);
             font-size: var(--text-sm);
@@ -238,6 +233,7 @@
                         <p>As an African woman, mother, and scholar, newly finding my feet and voice in a new country and navigating uncertain times, I draw inspiration from my daughter.</p>
                         <p>Being her mother requires me to process and translate a world that I can barely wrap my head around lately, to her.</p>
                         <p>Sometimes, the best I have is: "I don't know, what do you think, my love?" or "Let me think about that and get back to you later." or "Let's figure it out together", and that's okay. At other times, this does not suffice, and I need to reflect on my perspective and provide a starting point , a lens to help her frame the world as she explores and forms her own point of view.</p>
+                        <p>And that's okay.</p>
                     </div>
                     <button class="blog-post__expand-btn">
                         <i class="fas fa-chevron-down"></i>
@@ -310,8 +306,35 @@
             </div>
         </footer>
     </div>
-
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const posts = document.querySelectorAll(".blog-post");
+
+    posts.forEach(post => {
+        const btn = post.querySelector(".blog-post__expand-btn");
+        const content = post.querySelector(".blog-post__full-content");
+
+        btn.addEventListener("click", function () {
+
+            const isExpanded = post.classList.contains("expanded");
+
+            if (isExpanded) {
+                content.style.maxHeight = null;
+                post.classList.remove("expanded");
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                post.classList.add("expanded");
+            }
+
+        });
+    });
+
+});
+</script>
+    </script>
 </body>
 </html>
