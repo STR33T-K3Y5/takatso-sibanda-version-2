@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog | Takatso Sibanda</title>
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmRZswdLC8NXSdfZNNRT2Rc2h6V8zFf0Oo8E4jNq+IqyCn1n5hbyMHt5MifDB2fhdAOaH4dKGlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        /* Blog specific styles */
+        .s-blog {
+            padding-top: var(--vspace-7);
+            padding-bottom: var(--vspace-4);
+            color: var(--color-3);
+        }
+        .s-blog__content {
+            margin-bottom: var(--vspace-2);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            padding: var(--vspace-1_5);
+            margin-bottom: var(--vspace-1_5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .blog-post:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .blog-post__image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--vspace-1);
+        }
+        .blog-post__header {
+            margin-bottom: var(--vspace-1_25);
+        }
+        .blog-post__title {
+            font-family: var(--font-2);
+            font-weight: 400;
+            font-size: var(--text-xxl);
+            line-height: 1.1;
+            margin: 0 0 var(--vspace-0_75) 0;
+            color: var(--color-text-dark);
+        }
+        .blog-post__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--vspace-0_75);
+            margin-bottom: var(--vspace-1_5);
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+            font-family: var(--font-1);
+            font-weight: 500;
+        }
+        .blog-post__meta span::after {
+            content: "•";
+            margin-left: var(--vspace-0_25);
+        }
+        .blog-post__meta span:last-child::after {
+            display: none;
+        }
+        .blog-post__preview {
+            font-size: var(--text-md);
+            line-height: var(--vspace-1_25);
+            margin-bottom: var(--vspace-1_5);
+            color: var(--color-text);
+        }
+        .blog-post__full-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .blog-post__full-content.open {
+            max-height: 3000px;
+        }
+        .blog-post__full-content p {
+            margin-bottom: var(--vspace-1);
+            font-size: var(--text-sm);
+            line-height: var(--vspace-1_25);
+            color: var(--color-text);
+        }
+        .blog-post__full-content p:last-child {
+            margin-bottom: 0;
+        }
+        .blog-post__expand-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--vspace-0_5);
+            padding: var(--vspace-0_75) var(--vspace-1_5);
+            background: transparent;
+            border: 2px solid var(--color-1);
+            border-radius: var(--border-radius);
+            color: var(--color-1);
+            font-family: var(--font-1);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--vspace-0_75);
+        }
+        .blog-post__expand-btn:hover {
+            background: var(--color-1);
+            color: var(--color-white);
+            transform: translateY(-1px);
+        }
+        .blog-post__expand-btn i {
+            transition: transform 0.3s ease;
+        }
+        .blog-post.expanded .blog-post__expand-btn i {
+            transform: rotate(180deg);
+        }
+        @media screen and (max-width: 800px) {
+            .s-blog {
+                padding-top: var(--vspace-5);
+                padding-bottom: var(--vspace-3);
+            }
+            .blog-post {
+                padding: var(--vspace-1_25);
+                margin-bottom: var(--vspace-1_25);
+            }
+            .blog-post__title {
+                font-size: var(--text-xl);
+            }
+            .blog-post__image {
+                height: 250px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .blog-post__meta {
+                flex-direction: column;
+                gap: var(--vspace-0_5);
+            }
+            .blog-post__image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="page" class="s-pagewrap">
+        <!-- Header (copied from home.html) -->
+        <header class="s-header">
+            <div class="row s-header__inner">
+                <div class="s-header__block">
+                    <div class="s-header__logo">
+                        <a class="logo" href="home.html">
+                            <img src="images/logo.png" alt="Homepage">
+                        </a>
+                    </div>
+                    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+                </div>
+                <nav class="s-header__nav">    
+                    <ul class="s-header__menu-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a class="smoothscroll" href="#footer">Contact</a></li>
+                    </ul>    
+                </nav>
+            </div>
+        </header>
+        <!-- Blog Section -->
+        <section id="blog" class="s-blog target-section">
+            <div class="row s-blog__content">
+                <div class="column xl-12">
+                    <div class="section-header">
+                        <h2 class="text-display-title">Blog</h2>
+                    </div>
+                </div>
+                <article class="column xl-10 lg-11 md-12 blog-post">
+                    <img src="images/doll-house-he.webp" alt="Dollhouse play date" class="blog-post__image">
+                    <div class="blog-post__header">
+                        <h1 class="blog-post__title">Diversity in the Dollhouse: Navigating Identity and Imagination</h1>
+                        <div class="blog-post__meta">
+                            <span>By Percy Jackson</span>
+                            <span>January 2025</span>
+                        </div>
+                    </div>
+                    <div class="blog-post__preview">
+                        <p>My daughter had a play date this weekend with her bff. She was excited about showing her the dolls and doll house she got for Christmas; and having a willing play partner for a change. A few minutes into the play date, I overheard an exchange they were having about which doll they would each take...</p>
+                    </div>
+                    <div class="blog-post__full-content">
+                        <p>My daughter had a play date this weekend with her bff. She was excited about showing her the dolls and doll house she got for Christmas; and having a willing play partner for a change.</p>
+                        <p>A few minutes into the play date, I overheard an exchange they were having about which doll they would each take. My daughter's argument was that she liked a particular doll and so that doll would "be her" while her friend also wanted the same doll because the doll looked like her.</p>
+                        <p>I heard them resolve to come and ask me which doll they each looked like and they would then choose dolls based on that. So one doll is white and blond with blue eyes and a pink dress while the other is brown with black hair and a blue dress.</p>
+                        <p>They came to me and repeated the conversation I had overheard. I wasn't sure how to respond. This is the first time race related questions have come up in play for my child.</p>
+                        <p>So...I took a deep breath and told the girls that the dolls resemble them both in different ways. My daughter's skin and eyes are brown, her hair is black and she likes pink dresses. Her friend's skin is pinkish, eyes brown, her hair is dark and she likes both pink and blue dresses.</p>
+                        <p>Since playing with dolls is fun and about imagination, they and their dolls are all beautiful and they have the freedom and power to be whichever doll they want. They can pretend to have no hair at all or to have pink or green hair, or black or rainbow or red dresses if they want.</p>
+                        <p>How they and their dolls look must not limit their play and imagination.</p>
+                        <p>Both girls left smiling still with the dolls they had come with and I heard them playing happily. My daughter declared that she was the president and her friend said she was ME.</p>
+                        <p>In the moment they stood there, looking to me for an answer, I felt the weight of providing one that not only embraced truth and joy but would also help them think positively about themselves and each other. This moment will stay with me for a long time.</p>
+                        <p>As an African woman, mother, and scholar, newly finding my feet and voice in a new country and navigating uncertain times, I draw inspiration from my daughter.</p>
+                        <p>Being her mother requires me to process and translate a world that I can barely wrap my head around lately, to her.</p>
+                        <p>Sometimes, the best I have is: "I don't know, what do you think, my love?" or "Let me think about that and get back to you later." or "Let's figure it out together."</p>
+                        <p>And that's okay.</p>
+                        <p>At other times, this does not suffice, and I need to reflect on my perspective and provide a starting point — a lens to help her frame the world as she explores and forms her own point of view.</p>
+                    </div>
+                    <button class="blog-post__expand-btn" onclick="toggleBlogContent(this)">
+                        <i class="fas fa-plus"></i>
+                        <span class="expand-text">Read More</span>
+                        <span class="collapse-text">Read Less</span>
+                    </button>
+                </article>
+            </div>
+        </section>
+        <!-- Footer (copied from home.html) -->
+        <footer id="footer" class="s-footer target-section">
+            <div class="row">
+                <div class="column lg-12">
+                    <div class="section-header light-on-dark">
+                        <h2 class="text-display-title">Get In Touch.</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row s-footer__content">
+                <div class="column xl-6 md-12 s-footer__block s-footer__about">                    
+                    <p class="attention-getter">
+                    Let's work together to build healthier, more just communities. Get in touch to collaborate, consult, or connect.
+                    </p>               
+                </div>
+                <div class="column xl-6 md-12 s-footer__block s-footer__site-links">
+                    <div class="row">
+                        <div class="column xl-4 lg-5 md-6 tab-12">
+                            <h5>Follow Me</h5>
+                            <ul class="link-list">
+                                <li><a href="https://www.linkedin.com/in/takatsosibanda/" target="_blank">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                        <div class="column xl-6 md-6 tab-12">
+                            <h5>Contact Me</h5>
+                            <ul class="link-list">
+                                <li><a href="mailto:me@takatsosibanda.com">me@takatsosibanda.com</a></li>
+                            </ul> 
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row s-footer__buttons">
+                <div class="column xl-6 tab-12">
+                    <a href="mailto:me@takatsosibanda.com" class="btn btn--primary btn--large u-fullwidth">Message Me</a>
+                </div>
+            </div>              
+            <div class="row s-footer__bottom">
+                <div class="column xl-6 lg-12">
+                    <ul class="s-footer__social social-list">
+                        <li>
+                            <a href="https://www.linkedin.com/in/takatsosibanda/" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                                <span class="u-screen-reader-text">LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column xl-6 lg-12">
+                    <p class="ss-copyright">
+                        <span>© Copyright Takatso Sibanda <span id="copyright-year">2025</span></span> 
+                        <span>Designed by <a href="https://787creativestudios.com/web/home" target="_blank">787 Creative Studios</a></span>
+                    </p>
+                </div>
+            </div>          
+            <div class="ss-go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top">                 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M5.536 21.886a1.004 1.004 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886z"></path></svg>
+                </a>                                
+                <span>Back To Top</span>   
+            </div>
+        </footer>
+    </div>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function toggleBlogContent(btn) {
+            const post = btn.closest('.blog-post');
+            const fullContent = post.querySelector('.blog-post__full-content');
+            const expandText = btn.querySelector('.expand-text');
+            const collapseText = btn.querySelector('.collapse-text');
+            
+            if (fullContent.classList.contains('open')) {
+                fullContent.classList.remove('open');
+                expandText.style.display = 'inline';
+                collapseText.style.display = 'none';
+                post.classList.remove('expanded');
+            } else {
+                fullContent.classList.add('open');
+                expandText.style.display = 'none';
+                collapseText.style.display = 'inline';
+                post.classList.add('expanded');
+            }
+        }
+    </script>
+</body>
+</html>

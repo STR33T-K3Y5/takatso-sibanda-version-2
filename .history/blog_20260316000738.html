@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog | Takatso Sibanda</title>
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmRZswdLC8NXSdfZNNRT2Rc2h6V8zFf0Oo8E4jNq+IqyCn1n5hbyMHt5MifDB2fhdAOaH4dKGlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        /* Blog specific styles */
+        .s-blog {
+            padding-top: var(--vspace-7);
+            padding-bottom: var(--vspace-4);
+            color: var(--color-3);
+        }
+        .s-blog__content {
+            margin-bottom: var(--vspace-2);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .blog-post {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            padding: var(--vspace-1_5);
+            margin-bottom: var(--vspace-1_5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .blog-post:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .blog-post__image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--vspace-1);
+        }
+        .blog-post__header {
+            margin-bottom: var(--vspace-1_25);
+        }
+        .blog-post__title {
+            font-family: var(--font-2);
+            font-weight: 400;
+            font-size: var(--text-xxl);
+            line-height: 1.1;
+            margin: 0 0 var(--vspace-0_75) 0;
+            color: var(--color-text-dark);
+        }
+        .blog-post__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--vspace-0_75);
+            margin-bottom: var(--vspace-1_5);
+            font-size: var(--text-sm);
+            color: var(--color-text-light);
+            font-family: var(--font-1);
+            font-weight: 500;
+        }
+        .blog-post__meta span::after {
+            content: "•";
+            margin-left: var(--vspace-0_25);
+        }
+        .blog-post__meta span:last-child::after {
+            display: none;
+        }
+        .blog-post__preview {
+            font-size: var(--text-md);
+            line-height: var(--vspace-1_25);
+            margin-bottom: var(--vspace-1_5);
+            color: var(--color-text);
+        }
+        .blog-post__full-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .blog-post__full-content.open {
+            max-height: 3000px;
+        }
+        .blog-post__full-content p {
+            margin-bottom: var(--vspace-1);
+            font-size: var(--text-sm);
+            line-height: var(--vspace-1_25);
+            color: var(--color-text);
+        }
+        .blog-post__full-content p:last-child {
+            margin-bottom: 0;
+        }
+        .blog-post__expand-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--vspace-0_5);
+            padding: var(--vspace-0_75) var(--vspace-1_5);
+            background: transparent;
+            border: 2px solid var(--color-1);
+            border-radius: var(--border-radius);
+            color: var(--color-1);
+            font-family: var(--font-1);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: var(--vspace-0_75);
+        }
+        .blog-post__expand-btn:hover {
+            background: var(--color-1);
+            color: var(--color-white);
+            transform: translateY(-1px);
+        }
+        .blog-post__expand-btn i {
+            transition: transform 0.3s ease;
+        }
+        .blog-post.expanded .blog-post__expand-btn i {
+            transform: rotate(180deg);
+        }
+        @media screen and (max-width: 800px) {
+            .s-blog {
+                padding-top: var(--vspace-5);
+                padding-bottom: var(--vspace-3);
+            }
+            .blog-post {
+                padding: var(--vspace-1_25);
+                margin-bottom: var(--vspace-1_25);
+            }
+            .blog-post__title {
+                font-size: var(--text-xl);
+            }
+            .blog-post__image {
+                height: 250px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .blog-post__meta {
+                flex-direction: column;
+                gap: var(--vspace-0_5);
+            }
+            .blog-post__image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="page" class="s-pagewrap">
+        <!-- Header (copied from home.html) -->
+        <header class="s-header">
+            <div class="row s-header__inner">
+                <div class="s-header__block">
+                    <div class="s-header__logo">
+                        <a class="logo" href="home.html">
+                            <img src="images/logo.png" alt="Homepage">
+                        </a>
+                    </div>
+                    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+                </div>
+                <nav class="s-header__nav">    
+                    <ul class="s-header__menu-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a class="smoothscroll" href="#footer">Contact</a></li>
+                    </ul>    
+                </nav>
