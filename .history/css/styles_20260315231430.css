@@ -3742,71 +3742,115 @@ td:last-child {
 }
 
 @media screen and (max-width: 1080px) {
-
     .s-intro {
-        background: white;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        --content-padding-top   : max(12rem, 16vh);
+        --content-padding-bottom: 9.6rem;
     }
 
-    /* IMAGE FIRST */
-    .s-intro__content-media {
-        position: relative;
-        left: auto;
-        width: 100%;
-        height: auto;
-        order: 1;
-    }
-
-    .s-intro__content-media img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    /* TEXT SECOND */
     .s-intro__content {
-        order: 2;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        align-items: center;
-        margin-top: 70px;
+        padding-bottom: var(--vspace-0_75);
+        align-items   : center;
+        margin-top: 700px;
+        
     }
 
     .s-intro__content-text {
         grid-column: 1/-1;
-        text-align: center;
-        max-width: 90%;
-        margin: 0 auto;
-        color: var(--color-1);
+        text-align : center;
+        max-width  : 70vw;
+        margin     : 0 auto;
     }
 
     .s-intro__content-title {
-        color: var(--color-1);
+        font-size: clamp(4.2rem, 8.2vw, 8.8rem);
+        color    : white;
     }
 
-    .s-intro__content-pretitle {
-        color: var(--color-1);
+    .s-intro__content-title br {
+        display: none;
     }
 
-    /* SOCIAL ICONS THIRD */
+    .s-intro__content-btns {
+        --color-btn                  : white;
+        --color-btn-text             : var(--color-text-dark);
+        --color-btn-hover            : var(--color-1);
+        --color-btn-hover-text       : white;
+        --color-btn-stroke           : white;
+        --color-btn-stroke-text      : white;
+        --color-btn-stroke-hover     : white;
+        --color-btn-stroke-hover-text: var(--color-text-dark);
+        padding-right                : 0;
+        max-width                    : 400px;
+        margin                       : var(--vspace-1) auto 0;
+    }
+
+    .s-intro__content-btns .btn {
+        margin-right: 0;
+    }
+
+    .s-intro__content-media {
+        left: 0;
+    }
+
+    .s-intro__content-media::before {
+        opacity: 0.2;
+    }
+
     .s-intro__social {
-        position: relative;
-        order: 3;
-        bottom: auto;
-        right: auto;
-        display: flex;
-        justify-content: center;
-        gap: 1.2rem;
-        margin-top: 2rem;
+        right: calc(2.4rem + var(--vspace-0_375));
     }
 
-    .s-intro__social svg path,
-    .s-intro__social svg circle {
-        fill: var(--color-1);
+    .s-intro__social svg {
+        height: var(--vspace-0_625);
+        width : var(--vspace-0_625);
+    }
+
+    .s-intro__btn-download {
+        --hline-width: 8vw;
+        left         : var(--hline-width);
+        bottom       : var(--vspace-0_75);
+    }
+
+    .s-intro__btn-download .btn--stroke {
+        --btn-height: var(--vspace-1_25);
+        background  : transparent !important;
+        border      : 2px solid transparent;
+        padding     : 0 2.4rem;
+    }
+
+    .s-intro__btn-download .btn--stroke::before {
+        height : 1px;
+        opacity: 0.5;
+        top    : calc(50% - 1px);
+    }
+
+    .s-intro__btn-download .btn--stroke::after {
+        content         : "";
+        display         : block;
+        background-color: var(--color-1);
+        height          : 2px;
+        width           : 0;
+        bottom          : 0;
+        left            : 2rem;
+        transition      : width 0.2s ease-in-out;
+    }
+
+    .s-intro__btn-download .btn--stroke:hover {
+        color: white;
+    }
+
+    .s-intro__btn-download .btn--stroke:hover::after {
+        width: 100%;
+    }
+
+    .s-intro__scroll-down {
+        bottom: var(--vspace-1);
+        right : 2.4rem;
+    }
+
+    .s-intro__scroll-down .scroll-icon {
+        height: var(--vspace-1_5);
+        width : var(--vspace-1_5);
     }
 }
 
